@@ -26,6 +26,9 @@ export class JwtStrategy extends PassportStrategy(
                 id:payload.sub,
             }
         })
-        return null;
+        if (!user) return null;
+
+        const { hash, ...userWithoutHash } = user;
+        return userWithoutHash;
       }
 }
